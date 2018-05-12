@@ -28,4 +28,7 @@
       <Filter>Header Files\List</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Containers.cd" />
+  </ItemGroup>
 </Project>
