@@ -21,5 +21,11 @@
     <ClInclude Include="DLNode.h">
       <Filter>Header Files\List</Filter>
     </ClInclude>
+    <ClInclude Include="DLNodeIter.h">
+      <Filter>Header Files\List</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Header Files\List</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

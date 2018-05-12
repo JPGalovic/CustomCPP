@@ -1,9 +1,9 @@
 #pragma once
 /**
  * Doubly Linked List Node, Contains definition for nodes used in Doubly Linked Lists.
- * Adapted from code developed for COS30008 - Data Structures and Pattens.
+ * Adapted from code developed for COS30008 - Data Structures and Patterns.
  * @author  J.P.Galovic.
- * @version v1.3.0.
+ * @version v1.3.2.
  * @date    MAY18.
  */
 
@@ -25,6 +25,8 @@ namespace Container
 		DLNode();
 
 	public:
+		typedef DLNode<T> Node;
+
 		// Construction and Destruction.
 		static DLNode<T> NIL;
 		DLNode(const T & aValue);
@@ -82,7 +84,7 @@ namespace Container
 			}
 
 			SetConsoleTextAttribute(lConsole, 14);
-			aOStream << '(';
+			aOStream << ')';
 
 			SetConsoleTextAttribute(lConsole, lConsoleColor);
 			return aOStream;

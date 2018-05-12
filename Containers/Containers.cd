@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Container::DLNode&lt;T&gt;">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Typedef Name="Container::DLNode&lt;T&gt;::Node" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DLNode.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAICAEIAAAAAAAAgAAAIACAAECAAAAAAI=</HashCode>
+      <FileName>DLNode.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Container::DLNodeIter&lt;T&gt;">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Container::DLNodeIter&lt;T&gt;::State" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DLNodeIter.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAABIABAAAAAAAAAQAEIAQAAAAAAAACAABAgAAAABgA=</HashCode>
+      <FileName>DLNodeIter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Container::List&lt;T&gt;">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Typedef Name="Container::List&lt;T&gt;::Iter" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>List.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="Container::List&lt;T&gt;::Node" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>List.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="Container::List&lt;T&gt;::List" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>List.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CBAAACgAAADAAASErIAAAQACAAEAAAACDAEgAAADAAI=</HashCode>
+      <FileName>List.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
