@@ -65,5 +65,40 @@ namespace ContainersTests
 			Assert::AreEqual(l2, lList[1]);
 			Assert::AreEqual(l1, lList[2]);
 		}
+
+		TEST_METHOD(TestRemove)
+		{
+			// Prepare Items
+			int l1 = 1;
+			int l2 = 2;
+			int l3 = 3;
+			int l4 = 4;
+			int l5 = 5;
+
+			List<int> lList;
+
+			// Append List
+			lList.add(l1);
+			lList.add(l2);
+			lList.add(l3);
+			lList.add(l4);
+			lList.add(l5);
+
+			// Check elements of list;
+			Assert::AreEqual(l1, lList[0]);
+			Assert::AreEqual(l2, lList[1]);
+			Assert::AreEqual(l3, lList[2]);
+			Assert::AreEqual(l4, lList[3]);
+			Assert::AreEqual(l5, lList[4]);
+
+			// Remove l4 from list;
+			Assert::IsTrue(lList.remove(l4));
+
+			// Re-Check elements of list
+			Assert::AreEqual(l1, lList[0]);
+			Assert::AreEqual(l2, lList[1]);
+			Assert::AreEqual(l3, lList[2]);
+			Assert::AreEqual(l5, lList[3]);
+		}
 	};
 }
