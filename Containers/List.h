@@ -23,7 +23,6 @@ namespace Container
 	public:
 		typedef DLNodeIter<T> Iter;
 		typedef DLNode<T> Node;
-		typedef List<T> List;
 
 		// Construction and Destruction.
 		List();

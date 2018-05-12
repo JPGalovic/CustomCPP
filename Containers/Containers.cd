@@ -41,11 +41,6 @@
           <NewMemberFileName>List.h</NewMemberFileName>
         </TypeIdentifier>
       </Typedef>
-      <Typedef Name="Container::List&lt;T&gt;::List" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>List.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Typedef>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>CBAAACgAAADAAASErIAAAQACAAEAAAACDAEgAAADAAI=</HashCode>
