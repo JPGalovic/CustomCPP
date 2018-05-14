@@ -3,7 +3,7 @@
  * Doubly Linked List Node Iterator, Provides simplified means to traverse lists in an iterive manor.
  * Adapted from code developed for COS30008 - Data Structures and Patterns.
  * @author  J.P.Galovic.
- * @version v1.2.0.
+ * @version v1.2.1.
  * @date    MAY18.
  */
 
@@ -46,10 +46,10 @@ namespace Container
 	/**
 	 * Class Constructor, constructs itereator based on list node provided.
 	 * @param   aList, refernce to list.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline DLNodeIter<T>::DLNodeIter(const DLNode<T>& aList)
+	DLNodeIter<T>::DLNodeIter(const DLNode<T>& aList)
 	{
 		fLeftMost = &aList;
 		while (&fLeftMost->getPrevious() != &DLNode<T>::NIL)
@@ -68,20 +68,20 @@ namespace Container
 
 	/**
 	 * Derefernce operator, derefernces current node.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline const T & DLNodeIter<T>::operator*() const
+	const T & DLNodeIter<T>::operator*() const
 	{
 		return fCurrent->getValue();
 	}
 
 	/**
 	 * Prefix Increment.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline DLNodeIter<T>& DLNodeIter<T>::operator++()
+	DLNodeIter<T>& DLNodeIter<T>::operator++()
 	{
 		switch (fState)
 		{
@@ -103,10 +103,10 @@ namespace Container
 
 	/**
 	 * Postfix Increment.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline DLNodeIter<T> DLNodeIter<T>::operator++(int)
+	DLNodeIter<T> DLNodeIter<T>::operator++(int)
 	{
 		DLNodeIter<T> lTemp = *this;
 		++(*this);
@@ -116,10 +116,10 @@ namespace Container
 
 	/**
 	 * Prefix Decrement.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline DLNodeIter<T>& DLNodeIter<T>::operator--()
+	DLNodeIter<T>& DLNodeIter<T>::operator--()
 	{
 		switch (fState)
 		{
@@ -142,10 +142,10 @@ namespace Container
 
 	/**
 	 * Postfix Decrement.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline DLNodeIter<T> DLNodeIter<T>::operator--(int)
+	DLNodeIter<T> DLNodeIter<T>::operator--(int)
 	{
 		DLNodeIter<T> lTemp = *this;
 		--(*this);
@@ -155,10 +155,10 @@ namespace Container
 	/**
 	 * Equality Operator.
 	 * @param   aOther, refernce to other Iterator.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline bool DLNodeIter<T>::operator==(const DLNodeIter<T>& aOther) const
+	bool DLNodeIter<T>::operator==(const DLNodeIter<T>& aOther) const
 	{
 		return fLeftMost == aOther.fLeftMost &&
 			fRightMost == aOther.fRightMost &&
@@ -169,20 +169,20 @@ namespace Container
 	/**
 	 * Inequality Operator.
 	 * @param   aOther, refernce to other Iterator.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline bool DLNodeIter<T>::operator!=(const DLNodeIter<T>& aOther) const
+	bool DLNodeIter<T>::operator!=(const DLNodeIter<T>& aOther) const
 	{
 		return !(*this == aOther);
 	}
 
 	/**
 	 * Gets iterator set before leftmost node.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline DLNodeIter<T> DLNodeIter<T>::leftEnd() const
+	DLNodeIter<T> DLNodeIter<T>::leftEnd() const
 	{
 		DLNodeIter<T> lTemp = *this;
 		lTemp.fCurrent = &DLNode::NIL;
@@ -192,35 +192,34 @@ namespace Container
 
 	/**
 	 * Gets iterator set at first node.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline DLNodeIter<T> DLNodeIter<T>::first() const
+	DLNodeIter<T> DLNodeIter<T>::first() const
 	{
 		return ++(leftEnd());
 	}
 
 	/**
 	 * Gets iterator set at last node.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline DLNodeIter<T> DLNodeIter<T>::last() const
+	DLNodeIter<T> DLNodeIter<T>::last() const
 	{
 		return --(rightEnd());
 	}
 
 	/**
 	 * Gets iterator set after rightmost node.
-	 * @date    12/05/2018.
+	 * @date    14/05/2018.
 	 */
 	template<class T>
-	inline DLNodeIter<T> DLNodeIter<T>::rightEnd() const
+	DLNodeIter<T> DLNodeIter<T>::rightEnd() const
 	{
 		DLNodeIter<T> lTemp = *this;
 		lTemp.fCurrent = &DLNode::NIL;
 		lTemp.fState = AFTER;
 		return lTemp;
 	}
-
 }
