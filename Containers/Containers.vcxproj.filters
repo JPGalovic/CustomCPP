@@ -16,6 +16,9 @@
     <Filter Include="Header Files\List">
       <UniqueIdentifier>{85c487d9-11c0-4c48-ab7b-c20d71eb807e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Dictionary">
+      <UniqueIdentifier>{68ba7c11-c7d3-47aa-ad12-cf36498c2df1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DLNode.h">
@@ -26,6 +29,9 @@
     </ClInclude>
     <ClInclude Include="List.h">
       <Filter>Header Files\List</Filter>
+    </ClInclude>
+    <ClInclude Include="Pair.h">
+      <Filter>Header Files\Dictionary</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

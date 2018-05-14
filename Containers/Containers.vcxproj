@@ -124,6 +124,7 @@
     <ClInclude Include="DLNode.h" />
     <ClInclude Include="DLNodeIter.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="Pair.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Containers.cd" />
