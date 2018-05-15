@@ -121,6 +121,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Dictionary.h" />
     <ClInclude Include="DLNode.h" />
     <ClInclude Include="DLNodeIter.h" />
     <ClInclude Include="List.h" />

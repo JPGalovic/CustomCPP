@@ -47,5 +47,12 @@
       <FileName>List.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Container::Pair&lt;A, B&gt;">
+    <Position X="12" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AQAABAAAAAgAAgAAABIAAQAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Pair.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
