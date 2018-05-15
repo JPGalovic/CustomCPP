@@ -54,5 +54,12 @@
       <FileName>Pair.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Container::Dictionary&lt;K, T&gt;">
+    <Position X="15.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAACAEQACAAAAAAAgAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Dictionary.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
