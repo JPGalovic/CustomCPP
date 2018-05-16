@@ -126,8 +126,10 @@
     <ClInclude Include="DLNodeIter.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Pair.h" />
+    <ClInclude Include="Queue.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\README.md" />
     <None Include="Containers.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

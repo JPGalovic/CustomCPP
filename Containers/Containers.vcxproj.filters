@@ -19,6 +19,15 @@
     <Filter Include="Header Files\Dictionary">
       <UniqueIdentifier>{68ba7c11-c7d3-47aa-ad12-cf36498c2df1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Queue">
+      <UniqueIdentifier>{425af510-dee4-43aa-a0c9-82a56f207579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Stack">
+      <UniqueIdentifier>{66f5272f-1cc4-435c-951e-5bf141e57521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tree">
+      <UniqueIdentifier>{645683d4-e820-4881-a8d4-9820349931de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DLNode.h">
@@ -36,8 +45,12 @@
     <ClInclude Include="Dictionary.h">
       <Filter>Header Files\Dictionary</Filter>
     </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Header Files\Queue</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Containers.cd" />
+    <None Include="..\README.md" />
   </ItemGroup>
 </Project>
