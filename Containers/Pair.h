@@ -97,7 +97,7 @@ namespace Container
 	template<class A, class B>
 	const A & Pair<A, B>::getA()
 	{
-		return fA.
+		return fA;
 	}
 
 	/** 
@@ -107,7 +107,7 @@ namespace Container
 	template<class A, class B>
 	const B & Pair<A, B>::getB()
 	{
-		return fB.
+		return fB;
 	}
 
 	/**

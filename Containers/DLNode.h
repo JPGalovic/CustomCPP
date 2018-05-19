@@ -25,8 +25,6 @@ namespace Container
 		DLNode();
 
 	public:
-		typedef DLNode<T> Node;
-
 		// Construction and Destruction.
 		static DLNode<T> NIL;
 		DLNode(const T & aValue);

@@ -2,7 +2,7 @@
 /**
  * Dictionary Lookup Table, Contains a list of matched pairs.
  * @author  J.P.Galovic
- * @version v1.1.0
+ * @version v1.1.3
  * @date    MAY18
  */
 #include "List.h"
@@ -43,28 +43,32 @@ namespace Container
 	/**
 	 * Gets pair with a given key.
 	 * @param   aKey, key of pair to get.
-	 * @date    15/05/2018.
+	 * @date    19/05/2018.
 	 */
 	template<class K, class T>
 	inline const Pair<K, T> & Dictionary<K, T>::getPair(const K & aKey) const
 	{
 		for (int i = 0; i < fLookup.count(); i++)
-			if (fLookup[i].getA() == aKey)
+		{
+			Pair<K, T> lPair = fLookup[i];
+			if (lPair.getA() == aKey)
 				return fLookup[i];
+		}
 		throw std::runtime_error("Key not found.");
 	}
 
 	/**
 	 * Gets value of pair with a given key.
 	 * @param   aKey, key of pair to get value of.
-	 * @date    15/05/2018.
+	 * @date    19/05/2018.
 	 */
 	template<class K, class T>
 	inline const T & Dictionary<K, T>::getValue(const K & aKey) const
 	{
 		try
 		{
-			return getPair(aKey).getB();
+			Pair<K, T> lPair = getPair(aKey);
+			return lPair.getB();
 		}
 		catch (const std::runtime_error& e)
 		{
@@ -75,15 +79,19 @@ namespace Container
 	/**
 	 * Checks if key is found within pairs.
 	 * @param   aKey, key to check.
-	 * @date    15/05/2018.
+	 * @date    19/05/2018.
 	 */
 	template<class K, class T>
 	inline bool Dictionary<K, T>::hasKey(const K & aKey) const
 	{
-		for (int i = 0; i < fLookup.count(); i++)
-			if (fLookup[i].getA() == aKey)
-				return true;
-		return false;
+		try
+		{
+			getPair(aKey);
+		}
+		catch (const std::runtime_error& e)
+		{
+			return false;
+		}
 	}
 
 	/**

@@ -3,7 +3,7 @@
  * Doubly Linked List Node Iterator, Provides simplified means to traverse lists in an iterive manor.
  * Adapted from code developed for COS30008 - Data Structures and Patterns.
  * @author  J.P.Galovic.
- * @version v1.2.1.
+ * @version v1.2.3.
  * @date    MAY18.
  */
 
@@ -15,7 +15,7 @@ namespace Container
 	class DLNodeIter
 	{
 	private:
-		enum State {BEFORE, DATA, AFTER};
+		enum State { BEFORE, DATA, AFTER };
 		State fState;
 
 		const DLNode<T>* fLeftMost;
@@ -78,7 +78,7 @@ namespace Container
 
 	/**
 	 * Prefix Increment.
-	 * @date    14/05/2018.
+	 * @date    20/05/2018.
 	 */
 	template<class T>
 	DLNodeIter<T>& DLNodeIter<T>::operator++()
@@ -95,6 +95,7 @@ namespace Container
 		case DATA:
 			fCurrent = &fCurrent->getNext();
 			if (fCurrent == &DLNode<T>::NIL)
+				fState = AFTER;
 		default:
 			break;
 		}
@@ -179,13 +180,13 @@ namespace Container
 
 	/**
 	 * Gets iterator set before leftmost node.
-	 * @date    14/05/2018.
+	 * @date    19/05/2018.
 	 */
 	template<class T>
 	DLNodeIter<T> DLNodeIter<T>::leftEnd() const
 	{
 		DLNodeIter<T> lTemp = *this;
-		lTemp.fCurrent = &DLNode::NIL;
+		lTemp.fCurrent = &DLNode<T>::NIL;
 		lTemp.fState = BEFORE;
 		return lTemp;
 	}
@@ -212,13 +213,13 @@ namespace Container
 
 	/**
 	 * Gets iterator set after rightmost node.
-	 * @date    14/05/2018.
+	 * @date    19/05/2018.
 	 */
 	template<class T>
 	DLNodeIter<T> DLNodeIter<T>::rightEnd() const
 	{
 		DLNodeIter<T> lTemp = *this;
-		lTemp.fCurrent = &DLNode::NIL;
+		lTemp.fCurrent = &DLNode<T>::NIL;
 		lTemp.fState = AFTER;
 		return lTemp;
 	}

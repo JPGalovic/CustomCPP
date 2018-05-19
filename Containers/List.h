@@ -3,7 +3,7 @@
  * Doubly Linked List, Contains definition for lists.
  * Adapted from code developed for COS30008 - Data Structures and Patterns.
  * @author  J.P.Galovic
- * @version v1.3.0
+ * @version v1.3.3
  * @date    MAY18
  */
 
@@ -22,7 +22,6 @@ namespace Container
 
 	public:
 		typedef DLNodeIter<T> Iter;
-		typedef DLNode<T> Node;
 
 		// Construction and Destruction.
 		List();
@@ -109,8 +108,8 @@ namespace Container
 	template<class T>
 	List<T>::List()
 	{
-		fTop = &Node::NIL;
-		fLast = &Node::NIL;
+		fTop = &DLNode<T>::NIL;
+		fLast = &DLNode<T>::NIL;
 		fCount = 0;
 	}
 
@@ -122,12 +121,12 @@ namespace Container
 	template<class T>
 	List<T>::List(const List<T>& aOther)
 	{
-		fTop = &Node::NIL;
-		fLast = &Node::NIL;
+		fTop = &DLNode<T>::NIL;
+		fLast = &DLNode<T>::NIL;
 		fCount = 0;
 
-		for (Iter lIter = aOther.getIter(); lIter != lIter.rightEnd(); lIter++)
-			append(*lIter);
+		for (int i = 0; i < aOther.size(); i++)
+			append(aOther[i]);
 	}
 
 	/**
@@ -137,9 +136,9 @@ namespace Container
 	template<class T>
 	List<T>::~List()
 	{
-		while (fTop != &Node::NIL)
+		while (fTop != &DLNode<T>::NIL)
 		{
-			Node* lTemp = (Node*) &fTop->getNext();
+			DLNode<T>* lTemp = (DLNode<T>*) &fTop->getNext();
 			fTop->remove();
 			delete fTop;
 			fTop = lTemp;
@@ -156,20 +155,20 @@ namespace Container
 	{
 		if (&aOther != this)
 		{
-			while (fTop != &Node::NIL)
+			while (fTop != &DLNode<T>::NIL)
 			{
-				Node* lTemp = (Node*) &fTop->getNext();
+				DLNode<T>* lTemp = (DLNode<T>*) &fTop->getNext();
 				fTop->remove();
 				delete fTop;
 				fTop = lTemp;
 			}
 
-			fTop = &Node::NIL;
-			fLast = &Node::NIL;
+			fTop = &DLNode<T>::NIL;
+			fLast = &DLNode<T>::NIL;
 			fCount = 0;
 
-			for (Iter lIter = aOther.getIter(); lIter != lIter.rightEnd(); lIter++)
-				append(*lIter);
+			for (int i = 0; i < aOther.size(); i++)
+				append(aOther[i]);
 		}
 		return *this;
 	}
@@ -181,7 +180,7 @@ namespace Container
 	template<class T>
 	bool List<T>::empty() const
 	{
-		return fTop == &Node::NIL;
+		return fTop == &DLNode<T>::NIL;
 	}
 
 	/**
@@ -224,13 +223,13 @@ namespace Container
 	/**
 	 * Checks if element within list.
 	 * @param   aElement, refernce to element to check for.
-	 * @date    12/05/2018.
+	 * @date    19/05/2018.
 	 */
 	template<class T>
 	bool List<T>::contains(const T & aElement) const
 	{
 		if (!empty())
-			for (Iter lIter = aOther.getIter(); lIter != lIter.rightEnd(); lIter++)
+			for (Iter lIter = getIter(); lIter != lIter.rightEnd(); lIter++)
 				if (*lIter == aElement)
 					return true;
 		return false;
@@ -388,11 +387,11 @@ namespace Container
 	{
 		if (aIndex < fCount)
 		{
-			Node* lNode = fTop;
+			DLNode<T>* lNode = fTop;
 			while (aIndex)
 			{
 				aIndex--;
-				lNode = (Node*)&lNode->getNext();
+				lNode = (DLNode<T>*)&lNode->getNext();
 			}
 			return lNode->getValue();
 		}
@@ -435,9 +434,9 @@ namespace Container
 	template<class T>
 	void List<T>::append(const T & aElement)
 	{
-		Node* lNewElement = new Node(aElement);
+		DLNode<T>* lNewElement = new DLNode<T>(aElement);
 
-		if (fTop == &Node::NIL)
+		if (fTop == &DLNode<T>::NIL)
 		{
 			fTop = lNewElement;
 			fLast = lNewElement;
@@ -459,9 +458,9 @@ namespace Container
 	template<class T>
 	void List<T>::prepend(const T & aElement)
 	{
-		Node* lNewElement = new Node(aElement);
+		DLNode<T>* lNewElement = new DLNode<T>(aElement);
 		
-		if (fTop == &Node::NIL)
+		if (fTop == &DLNode<T>::NIL)
 		{
 			fTop = lNewElement;
 			fLast = lNewElement;
@@ -498,13 +497,13 @@ namespace Container
 		if (!(aIndex < fCount))
 			throw std::range_error("Index out of range.");
 
-		Node* lNewElement = new Node(aElement);
-		Node* lNode = fTop;
+		DLNode<T>* lNewElement = new DLNode<T>(aElement);
+		DLNode<T>* lNode = fTop;
 
 		while (aIndex)
 		{
 			aIndex--;
-			lNode = (Node*)&lNode->getNext();
+			lNode = (DLNode<T>*)lNode->getNext();
 		}
 		lNode->append(&lNewElement);
 
@@ -519,22 +518,22 @@ namespace Container
 	template<class T>
 	bool List<T>::remove(const T & aElement)
 	{
-		Node* lNode = fTop;
+		DLNode<T>* lNode = fTop;
 
-		while (lNode != &Node::NIL)
+		while (lNode != &DLNode<T>::NIL)
 		{
 			if (lNode->getValue() == aElement)
 			{
 				if (lNode == fTop)
-					fTop = (Node*)&lNode->getNext();
+					fTop = (DLNode<T>*)&lNode->getNext();
 				if (lNode == fLast)
-					fLast = (Node*)&lNode->getPrevious();
+					fLast = (DLNode<T>*)&lNode->getPrevious();
 				lNode->remove();
 				delete lNode;
 				fCount--;
 				return true;
 			}
-			lNode = (Node*)&lNode->getNext();
+			lNode = (DLNode<T>*)&lNode->getNext();
 		}
 		return false;
 	}
@@ -549,16 +548,16 @@ namespace Container
 	{
 		int lCount = 0;
 
-		Node* lNode = fTop;
+		DLNode<T>* lNode = fTop;
 
 		while (lNode != &Node::NIL)
 		{
 			if (lNode->getValue() == aElement)
 			{
 				if (lNode == fTop)
-					fTop = (Node*)&lNode->getNext();
+					fTop = (DLNode<T>*)&lNode->getNext();
 				if (lNode == fLast)
-					fLast = (Node*)&lNode->getPrevious();
+					fLast = (DLNode<T>*)&lNode->getPrevious();
 				lNode->remove();
 				delete lNode;
 
@@ -568,9 +567,9 @@ namespace Container
 				lCount++;
 				continue;
 			}
-			lNode = (Node*)&lNode->getNext();
+			lNode = (DLNode<T>*)&lNode->getNext();
 		}
-		return false;
+		return lCount;
 	}
 
 	/**
