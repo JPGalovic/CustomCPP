@@ -3,7 +3,7 @@
  * Doubly Linked List Node, Contains definition for nodes used in Doubly Linked Lists.
  * Adapted from code developed for COS30008 - Data Structures and Patterns.
  * @author  J.P.Galovic.
- * @version v1.3.2.
+ * @version v1.4.2.
  * @date    MAY18.
  */
 
@@ -38,6 +38,8 @@ namespace Container
 		void prepend(DLNode<T> & aNode);
 		void append(DLNode<T> & aNode);
 		void remove();
+
+		void swap(DLNode<T>& aLeft, DLNode<T>& aRight);
 
 		// OStream.
 		friend std::ostream & operator<<(std::ostream aOStream, const DLNode<T> & aDLNode)
@@ -203,5 +205,27 @@ namespace Container
 			fPrevious->fNext = fNext;
 		if (fNext != &NIL)
 			fNext->fPrevious = fPrevious;
+	}
+
+	/**
+	 * Swaps the positions of the left and right nodes.
+	 * @param   aLeft, refernce to left node.
+	 * @param   aRight, refernce to right node.
+	 * @date    20/05/2018.
+	 */
+	template<class T>
+	inline void DLNode<T>::swap(DLNode<T>& aLeft, DLNode<T>& aRight)
+	{
+		DLNode<T>* lLeftTempPrevious;
+		DLNode<T>* lRightTempPrevious;
+
+		lLeftTempPrevious = aLeft.fPrevious;
+		lRightTempPrevious = aRight.fPrevious;
+
+		aLeft.remove();
+		aRight.remove();
+
+		lLeftTempPrevious->append(aRight);
+		lRightTempPrevious->append(aLeft);
 	}
 }

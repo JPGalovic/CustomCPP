@@ -134,7 +134,7 @@ namespace Container
 		case DATA:
 			fCurrent = &fCurrent->fPrevious();
 			if (fCurrent == &DLNode<T>::NIL)
-				fCurrent = BEFORE;
+				fState = BEFORE;
 		default:
 			break;
 		}
