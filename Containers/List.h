@@ -3,7 +3,7 @@
  * Doubly Linked List, Contains definition for lists.
  * Adapted from code developed for COS30008 - Data Structures and Patterns.
  * @author  J.P.Galovic
- * @version v1.3.3
+ * @version v1.4.0
  * @date    MAY18
  */
 
@@ -56,6 +56,9 @@ namespace Container
 		const T & operator[](int aIndex) const;
 
 		DLNodeIter<T> getIter() const;
+
+		DLNode<T>& getHead() const;
+		DLNode<T>& getLast() const;
 
 		// Setters.
 		void append(const T & aElement);
@@ -424,6 +427,26 @@ namespace Container
 	inline DLNodeIter<T> List<T>::getIter() const
 	{
 		return DLNodeIter<T>(*fTop);
+	}
+
+	/**
+	 * Gets refence to head node in list.
+	 * @date    20/05/2018.
+	 */
+	template<class T>
+	DLNode<T>& List<T>::getHead() const
+	{
+		return fTop;
+	}
+
+	/**
+	 * Gets refernce to last node in list.
+	 * @date    20/05/2018.
+	 */
+	template<class T>
+	DLNode<T>& List<T>::getLast() const
+	{
+		return fLast;
 	}
 
 	/**

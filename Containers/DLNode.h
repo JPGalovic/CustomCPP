@@ -214,7 +214,7 @@ namespace Container
 	 * @date    20/05/2018.
 	 */
 	template<class T>
-	inline void DLNode<T>::swap(DLNode<T>& aLeft, DLNode<T>& aRight)
+	void DLNode<T>::swap(DLNode<T>& aLeft, DLNode<T>& aRight)
 	{
 		DLNode<T>* lLeftTempPrevious;
 		DLNode<T>* lRightTempPrevious;
