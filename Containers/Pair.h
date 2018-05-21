@@ -2,7 +2,7 @@
 /**
  * Paired Elements
  * @author  J.P.Galovic
- * @version v1.1.0
+ * @version v1.1.2
  * @date    MAY18
  */
 
@@ -26,8 +26,8 @@ namespace Container
 		Pair(const A & aA, const B & aB);
 		
 		// Getters
-		const A & getA();
-		const B & getB();
+		const A & getA() const;
+		const B & getB() const;
 
 		bool operator==(const Pair<A, B> & aOther) const;
 		bool operator!=(const Pair<A, B> & aOther) const;
@@ -37,7 +37,7 @@ namespace Container
 		void setB(const B & aB);
 
 		// OStream
-		friend ostream& operator<<(ostream& aOStream, const Pair<A, B> & aList)
+		friend ostream& operator<<(ostream& aOStream, const Pair<A, B> & aPair)
 		{
 			HANDLE lConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 			CONSOLE_SCREEN_BUFFER_INFO lConsoleInfo;
@@ -49,16 +49,18 @@ namespace Container
 			SetConsoleTextAttribute(lConsole, 14);
 			aOStream << "[";
 
-			SetConsoleTextAttribute(hConsole, 15);
-			aOStream << aList.getA();
+			SetConsoleTextAttribute(lConsole, 15);
+			A lA = (A)aPair.getA();
+			aOStream << lA;
 
-			SetConsoleTextAttribute(hConsole, 14);
+			SetConsoleTextAttribute(lConsole, 14);
 			aOStream << ", ";
 
-			SetConsoleTextAttribute(hConsole, 15);
-			aOStream << aList.getB();
+			SetConsoleTextAttribute(lConsole, 15);
+			B lB = (B)aPair.getB();
+			aOStream << lB;
 
-			SetConsoleTextAttribute(hConsole, 14);
+			SetConsoleTextAttribute(lConsole, 14);
 			aOStream << "]";
 
 			SetConsoleTextAttribute(lConsole, lConsoleColor);
@@ -92,20 +94,20 @@ namespace Container
 
 	/**
 	 * Gets value of A.
-	 * @date    14/05/2018.
+	 * @date    21/05/2018.
 	 */
 	template<class A, class B>
-	const A & Pair<A, B>::getA()
+	const A & Pair<A, B>::getA() const
 	{
 		return fA;
 	}
 
 	/** 
 	 * Gets value of B.
-	 * @date    14/05/2018.
+	 * @date    21/05/2018.
 	 */
 	template<class A, class B>
-	const B & Pair<A, B>::getB()
+	const B & Pair<A, B>::getB() const
 	{
 		return fB;
 	}
@@ -113,12 +115,12 @@ namespace Container
 	/**
 	 * Equality Operator.
 	 * @param   aOther, refernce to other pair.
-	 * @date    14/05/2018.
+	 * @date    20/05/2018.
 	 */
 	template<class A, class B>
 	bool Pair<A, B>::operator==(const Pair<A, B>& aOther) const
 	{
-		return fA == aOther.fA && fB == aOther.fb;
+		return fA == aOther.fA && fB == aOther.fB;
 	}
 
 	/**

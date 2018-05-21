@@ -3,7 +3,7 @@
  * Doubly Linked List, Contains definition for lists.
  * Adapted from code developed for COS30008 - Data Structures and Patterns.
  * @author  J.P.Galovic
- * @version v1.4.0
+ * @version v1.4.1
  * @date    MAY18
  */
 
@@ -57,8 +57,8 @@ namespace Container
 
 		DLNodeIter<T> getIter() const;
 
-		DLNode<T>& getHead() const;
-		DLNode<T>& getLast() const;
+		DLNode<T>* getHead() const;
+		DLNode<T>* getLast() const;
 
 		// Setters.
 		void append(const T & aElement);
@@ -71,6 +71,8 @@ namespace Container
 		int removeAll(const T & aElement);
 		void removeAt(int aIndex);
 		void removeRange(int aIndex, int aCount);
+
+		void swap(int aIndexA, int aIndexB);
 
 		// OStream.
 		friend ostream& operator<<(ostream& aOStream, const List<T> & aList)
@@ -434,7 +436,7 @@ namespace Container
 	 * @date    20/05/2018.
 	 */
 	template<class T>
-	DLNode<T>& List<T>::getHead() const
+	DLNode<T>* List<T>::getHead() const
 	{
 		return fTop;
 	}
@@ -444,7 +446,7 @@ namespace Container
 	 * @date    20/05/2018.
 	 */
 	template<class T>
-	DLNode<T>& List<T>::getLast() const
+	DLNode<T>* List<T>::getLast() const
 	{
 		return fLast;
 	}
@@ -631,5 +633,44 @@ namespace Container
 		{
 			throw e;
 		}
+	}
+	
+	/**
+	 * Swaps elements at index A & B;
+	 * @param   aIndexA, index of element A.
+	 * @param   aIndexB, index of element B.
+	 * @date    21/05/2018.
+	 */
+	template<class T>
+	inline void List<T>::swap(int aIndexA, int aIndexB)
+	{
+		if (!(aIndexA < fCount) && !(aIndexB < fCount))
+			throw std::range_error("Index out of range.");
+
+		DLNode<T>* lLeft = fTop;
+		while (aIndexA)
+		{
+			aIndexA--;
+			lLeft = (DLNode<T>*)&lLeft->getNext();
+		}
+
+		DLNode<T>* lRight = fTop;
+		while (aIndexB)
+		{
+			aIndexB--;
+			lRight = (DLNode<T>*)&lRight->getNext();
+		}
+
+		DLNode<T>::swap(*lLeft, *lRight);
+
+		if (lLeft == fTop)
+			fTop = lRight;
+		else if (lRight == fTop)
+			fTop = lLeft;
+
+		if (lLeft == fLast)
+			fLast = lRight;
+		else if (lRight == fLast)
+			fLast = lLeft;
 	}
 }

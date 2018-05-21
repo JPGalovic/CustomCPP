@@ -2,9 +2,9 @@
 /**
  * Doubly Linked List Node, Contains definition for nodes used in Doubly Linked Lists.
  * Adapted from code developed for COS30008 - Data Structures and Patterns.
- * @author  J.P.Galovic.
- * @version v1.4.2.
- * @date    MAY18.
+ * @author  J.P.Galovic
+ * @version v1.5.0
+ * @date    MAY18
  */
 
 #include <ostream>
@@ -39,7 +39,11 @@ namespace Container
 		void append(DLNode<T> & aNode);
 		void remove();
 
-		void swap(DLNode<T>& aLeft, DLNode<T>& aRight);
+		// Swaping
+		static bool areNeighbours(DLNode<T>& aLeft, DLNode<T>& aRight);
+		
+		static void fixOuter(DLNode<T>& aNode);
+		static void swap(DLNode<T>& aLeft, DLNode<T>& aRight);
 
 		// OStream.
 		friend std::ostream & operator<<(std::ostream aOStream, const DLNode<T> & aDLNode)
@@ -208,24 +212,89 @@ namespace Container
 	}
 
 	/**
+	 * Checks if two nodes are neibours
+	 */
+	template<class T>
+	bool DLNode<T>::areNeighbours(DLNode<T>& aLeft, DLNode<T>& aRight)
+	{
+		return (aLeft.fNext == &aRight && aRight.fPrevious == &aLeft) || (aLeft.fPrevious == &aRight && aRight.fNext == &aLeft);
+	}
+
+	/**
+	 * Fixes the outer pointers of the node.
+	 * @param   aNode, refernce to node to fix outers from.
+	 * @date    21/05/2018.
+	 */
+	template<class T>
+	void DLNode<T>::fixOuter(DLNode<T>& aNode)
+	{
+		if (aNode.fPrevious != &DLNode<T>::NIL)
+			aNode.fPrevious->fNext = &aNode;
+		if (aNode.fNext != &DLNode<T>::NIL)
+			aNode.fNext->fPrevious = &aNode;
+	}
+
+	/**
 	 * Swaps the positions of the left and right nodes.
 	 * @param   aLeft, refernce to left node.
 	 * @param   aRight, refernce to right node.
-	 * @date    20/05/2018.
+	 * @date    21/05/2018.
 	 */
 	template<class T>
 	void DLNode<T>::swap(DLNode<T>& aLeft, DLNode<T>& aRight)
 	{
-		DLNode<T>* lLeftTempPrevious;
-		DLNode<T>* lRightTempPrevious;
+		DLNode<T>* lSwaps[4];
+		DLNode<T> lTemp;
 
-		lLeftTempPrevious = aLeft.fPrevious;
-		lRightTempPrevious = aRight.fPrevious;
+		if (&aLeft == &aRight)
+			return;
 
-		aLeft.remove();
-		aRight.remove();
+		if (aRight.fNext == &aLeft)
+		{
+			lSwaps[0] = aRight.fPrevious;
+			lSwaps[1] = aLeft.fPrevious;
+			lSwaps[2] = aRight.fNext;
+			lSwaps[3] = aLeft.fNext;
 
-		lLeftTempPrevious->append(aRight);
-		lRightTempPrevious->append(aLeft);
+			if (DLNode<T>::areNeighbours(aLeft, aRight))
+			{
+				aRight.fPrevious = lSwaps[2];
+				aLeft.fPrevious = lSwaps[0];
+				aRight.fNext = lSwaps[3];
+				aLeft.fNext = lSwaps[1];
+			}
+			else
+			{
+				aRight.fPrevious = lSwaps[1];
+				aLeft.fPrevious = lSwaps[0];
+				aRight.fNext = lSwaps[3];
+				aLeft.fNext = lSwaps[2];
+			}
+		}
+		else
+		{
+			lSwaps[0] = aLeft.fPrevious;
+			lSwaps[1] = aRight.fPrevious;
+			lSwaps[2] = aLeft.fNext;
+			lSwaps[3] = aRight.fNext;
+
+			if (DLNode<T>::areNeighbours(aLeft, aRight))
+			{
+				aLeft.fPrevious = lSwaps[2];
+				aRight.fPrevious = lSwaps[0];
+				aLeft.fNext = lSwaps[3];
+				aRight.fNext = lSwaps[1];
+			}
+			else
+			{
+				aLeft.fPrevious = lSwaps[1];
+				aRight.fPrevious = lSwaps[0];
+				aLeft.fNext = lSwaps[3];
+				aRight.fNext = lSwaps[2];
+			}
+		}
+
+		DLNode<T>::fixOuter(aLeft);
+		DLNode<T>::fixOuter(aRight);
 	}
 }

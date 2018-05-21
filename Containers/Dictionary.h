@@ -87,6 +87,7 @@ namespace Container
 		try
 		{
 			getPair(aKey);
+			return true;
 		}
 		catch (const std::runtime_error& e)
 		{
