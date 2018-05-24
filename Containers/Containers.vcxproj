@@ -125,6 +125,7 @@
     <ClInclude Include="DLNode.h" />
     <ClInclude Include="DLNodeIter.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="Pair.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueIter.h" />
