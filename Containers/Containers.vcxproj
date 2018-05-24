@@ -127,6 +127,10 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="Pair.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="QueueIter.h" />
+    <ClInclude Include="Stack.h" />
+    <ClInclude Include="StackIter.h" />
+    <ClInclude Include="TreeVisitor.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />

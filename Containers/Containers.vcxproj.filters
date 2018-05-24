@@ -48,6 +48,18 @@
     <ClInclude Include="Queue.h">
       <Filter>Header Files\Queue</Filter>
     </ClInclude>
+    <ClInclude Include="QueueIter.h">
+      <Filter>Header Files\Queue</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Header Files\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeVisitor.h">
+      <Filter>Header Files\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="StackIter.h">
+      <Filter>Header Files\Stack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Containers.cd" />
